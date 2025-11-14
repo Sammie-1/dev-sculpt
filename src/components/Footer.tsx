@@ -11,7 +11,7 @@ const Footer = () => {
   const companyLinks = [
     'About Us',
     'Our Process',
-    'Porfolio',
+    'Portfolio',
     'Contact',
   ];
 

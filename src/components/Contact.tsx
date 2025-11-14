@@ -4,7 +4,7 @@ const Contact = () => {
   const mailIcon = '/icons/mail-icon.png';
 
   return (
-    <section className="w-full bg-[#1316b8] py-12 md:py-16 lg:py-20 px-4 md:px-6 lg:px-8">
+    <section id="contact" className="w-full bg-[#1316b8] py-12 md:py-16 lg:py-20 px-4 md:px-6 lg:px-8">
       <div className="max-w-[1728px] mx-auto flex flex-col gap-12 md:gap-16 lg:gap-20">
         <div className="text-center">
           <h2 className="font-lato font-bold text-4xl md:text-5xl lg:text-[65px] leading-tight text-white m-0">
@@ -70,7 +70,7 @@ const Contact = () => {
                   </label>
                   <input
                     type="text"
-                    placeholder="John"
+                    placeholder="Enter your first name"
                     className="w-full h-[63px] border border-[#EEEEEE] rounded-[11px] px-4 font-lato font-normal text-base md:text-lg text-[rgba(0,0,0,0.25)] focus:outline-none focus:border-[#130f78]"
                   />
                 </div>
@@ -81,7 +81,7 @@ const Contact = () => {
                   </label>
                   <input
                     type="text"
-                    placeholder="London"
+                    placeholder="Enter your last name"
                     className="w-full h-[63px] border border-[#EEEEEE] rounded-[11px] px-4 font-lato font-normal text-base md:text-lg text-[rgba(0,0,0,0.25)] focus:outline-none focus:border-[#130f78]"
                   />
                 </div>
@@ -93,7 +93,7 @@ const Contact = () => {
                 </label>
                 <input
                   type="email"
-                  placeholder="John"
+                  placeholder="Enter your email address"
                   className="w-full h-[63px] border border-[#EEEEEE] rounded-[11px] px-4 font-lato font-normal text-base md:text-lg text-[rgba(0,0,0,0.25)] focus:outline-none focus:border-[#130f78]"
                 />
               </div>
@@ -104,7 +104,7 @@ const Contact = () => {
                 </label>
                 <input
                   type="text"
-                  placeholder="John"
+                  placeholder="Enter your company name"
                   className="w-full h-[63px] border border-[#EEEEEE] rounded-[11px] px-4 font-lato font-normal text-base md:text-lg text-[rgba(0,0,0,0.25)] focus:outline-none focus:border-[#130f78]"
                 />
               </div>
@@ -119,7 +119,7 @@ const Contact = () => {
                   </span>
                 </div>
                 <textarea
-                  placeholder="John"
+                  placeholder="Describe your project requirements..."
                   rows={5}
                   className="w-full h-[149px] border border-[#EEEEEE] rounded-[11px] px-4 py-3 font-lato font-normal text-base md:text-lg text-[rgba(0,0,0,0.25)] focus:outline-none focus:border-[#130f78] resize-none"
                 />
