@@ -16,7 +16,7 @@ const Header = ({ hideGetStarted = false }: HeaderProps) => {
     { name: 'Home', path: '/' },
     { name: 'About Us', path: '/about-us' },
     { name: 'Services', path: '/services' },
-    { name: 'Process', path: '/#process' },
+    { name: 'Process', path: '/process' },
     { name: 'Contact', path: '/#contact' },
   ];
 
@@ -33,7 +33,7 @@ const Header = ({ hideGetStarted = false }: HeaderProps) => {
 
         <nav className="hidden sm:flex items-center gap-4 sm:gap-6 md:gap-8 lg:gap-10 xl:gap-12 flex-1 justify-center">
           {navLinks.map((link) => {
-            const isActive = pathname === link.path || (link.path === '/about-us' && pathname?.startsWith('/about-us')) || (link.path === '/services' && pathname?.startsWith('/services'));
+            const isActive = pathname === link.path || (link.path === '/about-us' && pathname?.startsWith('/about-us')) || (link.path === '/services' && pathname?.startsWith('/services')) || (link.path === '/process' && pathname?.startsWith('/process'));
             if (link.path.startsWith('/#')) {
               return (
                 <a
@@ -107,7 +107,7 @@ const Header = ({ hideGetStarted = false }: HeaderProps) => {
       >
         <nav className="flex flex-col px-4 gap-3 py-4">
           {navLinks.map((link) => {
-            const isActive = pathname === link.path || (link.path === '/about-us' && pathname?.startsWith('/about-us')) || (link.path === '/services' && pathname?.startsWith('/services'));
+            const isActive = pathname === link.path || (link.path === '/about-us' && pathname?.startsWith('/about-us')) || (link.path === '/services' && pathname?.startsWith('/services')) || (link.path === '/process' && pathname?.startsWith('/process'));
             if (link.path.startsWith('/#')) {
               return (
                 <a
