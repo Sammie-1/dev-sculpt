@@ -8,12 +8,10 @@ const Contact = () => {
   const mailIcon = '/icons/mail-icon.png';
 
   return (
-    <section
+    <section 
       id="contact"
       ref={contactSection.ref}
-      className={`w-full bg-[#1316b8] py-12 md:py-16 lg:py-20 px-4 md:px-6 lg:px-8 scroll-animate ${
-        contactSection.isVisible ? 'visible' : ''
-      }`}
+      className={`w-full bg-[#1316b8] py-12 md:py-16 lg:py-20 px-4 md:px-6 lg:px-8 scroll-animate ${contactSection.isVisible ? 'visible' : ''}`}
     >
       <div className="max-w-[1728px] mx-auto flex flex-col gap-12 md:gap-16 lg:gap-20">
         <div className="text-center">

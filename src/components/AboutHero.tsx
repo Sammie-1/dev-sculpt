@@ -1,6 +1,36 @@
 'use client';
 
 import Image from 'next/image';
+import { useEffect, useRef, useState } from 'react';
+
+const useScrollAnimation = () => {
+  const [isVisible, setIsVisible] = useState(false);
+  const ref = useRef<HTMLElement | null>(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+        }
+      },
+      { threshold: 0.1 }
+    );
+
+    const currentRef = ref.current;
+    if (currentRef) {
+      observer.observe(currentRef);
+    }
+
+    return () => {
+      if (currentRef) {
+        observer.unobserve(currentRef);
+      }
+    };
+  }, []);
+
+  return { ref, isVisible };
+};
 
 const AboutHero = () => {
   const heroBackgroundImage = '/assets/about-us.png';
@@ -9,6 +39,14 @@ const AboutHero = () => {
   const overlayColor = '#1316b8';
   const overlayOpacity = 0.5;
   const storyImage = '/assets/our-story.png';
+
+  const storySection = useScrollAnimation();
+  const foundationSection = useScrollAnimation();
+  const drivesUsSection = useScrollAnimation();
+  const teamSection = useScrollAnimation();
+  const impactSection = useScrollAnimation();
+  const expertiseSection = useScrollAnimation();
+  const ctaSection = useScrollAnimation();
 
   return (
     <>
@@ -50,7 +88,10 @@ const AboutHero = () => {
         )}
       </section>
 
-      <section className="w-full bg-white py-8 sm:py-12 md:py-16 lg:py-20 px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16">
+      <section 
+        ref={storySection.ref}
+        className={`w-full bg-white py-8 sm:py-12 md:py-16 lg:py-20 px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16 scroll-animate ${storySection.isVisible ? 'visible' : ''}`}
+      >
         <div className="max-w-[1728px] mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-[60%_40%] gap-2 md:gap-3 lg:gap-4 items-start">
             <div className="flex flex-col gap-6 md:gap-8">
@@ -84,7 +125,10 @@ const AboutHero = () => {
         </div>
       </section>
 
-      <section className="w-full bg-white py-8 sm:py-12 md:py-16 lg:py-20 px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16">
+      <section 
+        ref={foundationSection.ref}
+        className={`w-full bg-white py-8 sm:py-12 md:py-16 lg:py-20 px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16 scroll-animate ${foundationSection.isVisible ? 'visible' : ''}`}
+      >
         <div className="max-w-[1728px] mx-auto">
           <div className="flex flex-col items-center text-center gap-4 md:gap-6 mb-8 md:mb-12 lg:mb-16">
             <h2 className="font-lato font-bold text-3xl sm:text-4xl md:text-5xl lg:text-[65px] leading-normal text-black m-0">
@@ -98,12 +142,15 @@ const AboutHero = () => {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 lg:gap-[41px]">
             <div className="bg-[rgba(238,238,238,0.25)] rounded-[11px] p-6 md:p-8 lg:p-10 flex flex-col items-center text-center gap-4 md:gap-6 min-h-[290px]">
               <div className="w-[57px] h-[57px] rounded-full bg-[#FDF2E4] flex items-center justify-center flex-shrink-0">
-                <svg className="w-6 h-6 text-[#E89F3B]" fill="currentColor" viewBox="0 0 24 24">
-                  <rect x="4" y="4" width="6" height="6" rx="1" fill="currentColor"/>
-                  <rect x="14" y="4" width="6" height="6" rx="1" fill="currentColor"/>
-                  <rect x="9" y="14" width="6" height="6" rx="1" fill="currentColor"/>
-                  <path d="M7 7h2v2H7zm10 0h2v2h-2zm-5 10h2v2h-2z" fill="currentColor"/>
-                </svg>
+                <div className="w-6 h-6 relative">
+                  <Image 
+                    src="/assets/mission.png" 
+                    alt="Mission icon" 
+                    fill
+                    className="object-contain"
+                    sizes="24px"
+                  />
+                </div>
               </div>
               <h3 className="font-lato font-bold text-lg sm:text-xl md:text-2xl lg:text-[24px] leading-[35px] text-black m-0">
                 Mission
@@ -114,10 +161,14 @@ const AboutHero = () => {
             </div>
 
             <div className="bg-[rgba(238,238,238,0.25)] rounded-[11px] p-6 md:p-8 lg:p-10 flex flex-col items-center text-center gap-4 md:gap-6 min-h-[290px]">
-              <div className="w-[57px] h-[57px] rounded-full bg-[#EAF7ED] flex items-center justify-center flex-shrink-0">
-                <svg className="w-6 h-6 text-[#5CB85C]" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/>
-                </svg>
+              <div className="w-[57px] h-[57px] relative flex-shrink-0">
+                <Image 
+                  src="/assets/vision.png" 
+                  alt="Vision icon" 
+                  fill
+                  className="object-contain"
+                  sizes="57px"
+                />
               </div>
               <h3 className="font-lato font-bold text-lg sm:text-xl md:text-2xl lg:text-[24px] leading-[35px] text-black m-0">
                 Vision
@@ -128,10 +179,14 @@ const AboutHero = () => {
             </div>
 
             <div className="bg-[rgba(238,238,238,0.25)] rounded-[11px] p-6 md:p-8 lg:p-10 flex flex-col items-center text-center gap-4 md:gap-6 min-h-[290px]">
-              <div className="w-[57px] h-[57px] rounded-full bg-[#EEF0FA] flex items-center justify-center flex-shrink-0">
-                <svg className="w-6 h-6 text-[#6C5CE7]" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
-                </svg>
+              <div className="w-[57px] h-[57px] relative flex-shrink-0">
+                <Image 
+                  src="/assets/value%21.png" 
+                  alt="Value icon" 
+                  fill
+                  className="object-contain"
+                  sizes="57px"
+                />
               </div>
               <h3 className="font-lato font-bold text-lg sm:text-xl md:text-2xl lg:text-[24px] leading-[35px] text-black m-0">
                 Value
@@ -144,7 +199,10 @@ const AboutHero = () => {
         </div>
       </section>
 
-      <section className="w-full bg-[rgba(238,238,238,0.25)] py-8 sm:py-12 md:py-16 lg:py-20 px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16">
+      <section 
+        ref={drivesUsSection.ref}
+        className={`w-full bg-[rgba(238,238,238,0.25)] py-8 sm:py-12 md:py-16 lg:py-20 px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16 scroll-animate ${drivesUsSection.isVisible ? 'visible' : ''}`}
+      >
         <div className="max-w-[1728px] mx-auto">
           <div className="flex flex-col items-center text-center gap-4 md:gap-6 mb-8 md:mb-12 lg:mb-16">
             <h2 className="font-lato font-bold text-3xl sm:text-4xl md:text-5xl lg:text-[65px] leading-normal text-[#1316b8] m-0">
@@ -158,16 +216,14 @@ const AboutHero = () => {
           <div className="flex flex-col gap-6 md:gap-8 lg:gap-12">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 lg:gap-12">
               <div className="bg-white rounded-[11px] shadow-[0px_4px_4px_0px_rgba(0,0,0,0.02)] p-6 md:p-8 lg:p-10 flex flex-col gap-4 md:gap-6 min-h-[319px]">
-                <div className="w-[60px] h-[60px] rounded-[4px] bg-[rgba(19,22,184,0.1)] flex items-center justify-center flex-shrink-0">
-                  <div className="w-6 h-6 relative">
-                    <Image 
-                      src="/icons/mobile-dev-icon.png" 
-                      alt="Innovation icon" 
-                      fill
-                      className="object-contain"
-                      sizes="24px"
-                    />
-                  </div>
+                <div className="w-[60px] h-[60px] relative flex-shrink-0">
+                  <Image 
+                    src="/icons/mobile-dev-icon.png" 
+                    alt="Innovation icon" 
+                    fill
+                    className="object-contain"
+                    sizes="60px"
+                  />
                 </div>
                 <h3 className="font-lato font-semibold text-lg sm:text-xl md:text-2xl lg:text-[24px] leading-[35px] text-black m-0">
                   Innovation
@@ -198,16 +254,14 @@ const AboutHero = () => {
               </div>
 
               <div className="bg-white rounded-[11px] shadow-[0px_4px_4px_0px_rgba(0,0,0,0.02)] p-6 md:p-8 lg:p-10 flex flex-col gap-4 md:gap-6 min-h-[319px]">
-                <div className="w-[60px] h-[60px] rounded-[4px] bg-[rgba(255,154,12,0.1)] flex items-center justify-center flex-shrink-0">
-                  <div className="w-6 h-6 relative">
-                    <Image 
-                      src="/icons/web-dev-icon.png" 
-                      alt="Excellence icon" 
-                      fill
-                      className="object-contain"
-                      sizes="24px"
-                    />
-                  </div>
+                <div className="w-[60px] h-[60px] relative flex-shrink-0">
+                  <Image 
+                    src="/icons/web-dev-icon.png" 
+                    alt="Excellence icon" 
+                    fill
+                    className="object-contain"
+                    sizes="60px"
+                  />
                 </div>
                 <h3 className="font-lato font-semibold text-lg sm:text-xl md:text-2xl lg:text-[24px] leading-[35px] text-black m-0">
                   Excellence
@@ -220,16 +274,14 @@ const AboutHero = () => {
 
             <div className="flex justify-center">
               <div className="w-full max-w-[487px] bg-white rounded-[11px] shadow-[0px_4px_4px_0px_rgba(0,0,0,0.02)] p-6 md:p-8 lg:p-10 flex flex-col gap-4 md:gap-6 min-h-[319px]">
-                <div className="w-[60px] h-[60px] rounded-[4px] bg-[rgba(252,234,43,0.1)] flex items-center justify-center flex-shrink-0">
-                  <div className="w-6 h-6 relative">
-                    <Image 
-                      src="/icons/cloud-icon.png" 
-                      alt="Integrity icon" 
-                      fill
-                      className="object-contain"
-                      sizes="24px"
-                    />
-                  </div>
+                <div className="w-[60px] h-[60px] relative flex-shrink-0">
+                  <Image 
+                    src="/icons/cloud-icon.png" 
+                    alt="Integrity icon" 
+                    fill
+                    className="object-contain"
+                    sizes="60px"
+                  />
                 </div>
                 <h3 className="font-lato font-semibold text-lg sm:text-xl md:text-2xl lg:text-[24px] leading-[35px] text-black m-0">
                   Integrity
@@ -243,7 +295,10 @@ const AboutHero = () => {
         </div>
       </section>
 
-      <section className="w-full bg-white py-8 sm:py-12 md:py-16 lg:py-20 px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16">
+      <section 
+        ref={teamSection.ref}
+        className={`w-full bg-white py-8 sm:py-12 md:py-16 lg:py-20 px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16 scroll-animate ${teamSection.isVisible ? 'visible' : ''}`}
+      >
         <div className="max-w-[1728px] mx-auto">
           <div className="flex flex-col items-center text-center gap-4 md:gap-6 mb-8 md:mb-12 lg:mb-16">
             <h2 className="font-lato font-bold text-3xl sm:text-4xl md:text-5xl lg:text-[65px] leading-normal text-[#1316b8] m-0">
@@ -400,7 +455,10 @@ const AboutHero = () => {
         </div>
       </section>
 
-      <section className="w-full bg-[#1316b8] py-8 sm:py-12 md:py-16 lg:py-20 px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16">
+      <section 
+        ref={impactSection.ref}
+        className={`w-full bg-[#1316b8] py-8 sm:py-12 md:py-16 lg:py-20 px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16 scroll-animate ${impactSection.isVisible ? 'visible' : ''}`}
+      >
         <div className="max-w-[1728px] mx-auto">
           <div className="flex flex-col items-center text-center gap-4 md:gap-6 mb-8 md:mb-12 lg:mb-16">
             <h2 className="font-lato font-bold text-3xl sm:text-4xl md:text-5xl lg:text-[65px] leading-normal text-white m-0">
@@ -451,7 +509,10 @@ const AboutHero = () => {
         </div>
       </section>
 
-      <section className="w-full bg-white py-8 sm:py-12 md:py-16 lg:py-20 px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16">
+      <section 
+        ref={expertiseSection.ref}
+        className={`w-full bg-white py-8 sm:py-12 md:py-16 lg:py-20 px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16 scroll-animate ${expertiseSection.isVisible ? 'visible' : ''}`}
+      >
         <div className="max-w-[1728px] mx-auto">
           <div className="flex flex-col items-center text-center gap-4 md:gap-6 mb-8 md:mb-12 lg:mb-16">
             <h2 className="font-lato font-bold text-3xl sm:text-4xl md:text-5xl lg:text-[65px] leading-normal text-black m-0">
@@ -502,7 +563,10 @@ const AboutHero = () => {
         </div>
       </section>
 
-      <section className="w-full bg-[rgba(19,22,184,0.1)] py-8 sm:py-12 md:py-16 lg:py-20 px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16">
+      <section 
+        ref={ctaSection.ref}
+        className={`w-full bg-[rgba(19,22,184,0.1)] py-8 sm:py-12 md:py-16 lg:py-20 px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16 scroll-animate ${ctaSection.isVisible ? 'visible' : ''}`}
+      >
         <div className="max-w-[1728px] mx-auto">
           <div className="flex flex-col items-center text-center gap-4 md:gap-6 mb-8 md:mb-12 lg:mb-16">
             <h2 className="font-lato font-bold text-3xl sm:text-4xl md:text-5xl lg:text-[65px] leading-normal text-black m-0">
@@ -514,11 +578,11 @@ const AboutHero = () => {
           </div>
 
           <div className="flex flex-col sm:flex-row gap-6 md:gap-8 items-center justify-center">
-            <button className="bg-[#1316b8] text-white font-lato font-bold text-lg sm:text-xl md:text-2xl lg:text-[24px] leading-[35px] rounded-[11px] px-8 md:px-12 lg:px-16 py-6 md:py-8 lg:py-[40px] min-h-[115px] w-full sm:w-auto min-w-[300px] md:min-w-[400px] lg:min-w-[492px] hover:opacity-90 transition-opacity">
+            <button className="bg-[#1316b8] text-white font-lato font-bold text-base sm:text-lg md:text-xl lg:text-[20px] leading-[35px] rounded-[11px] px-6 md:px-10 lg:px-12 py-4 md:py-6 lg:py-8 min-h-[80px] w-full sm:w-auto min-w-[250px] md:min-w-[320px] lg:min-w-[380px] hover:opacity-90 transition-opacity">
               Get in Touch
             </button>
 
-            <button className="bg-white border-2 border-[#1316b8] text-[#1316b8] font-lato font-bold text-lg sm:text-xl md:text-2xl lg:text-[24px] leading-[35px] rounded-[11px] px-8 md:px-12 lg:px-16 py-6 md:py-8 lg:py-[40px] min-h-[115px] w-full sm:w-auto min-w-[300px] md:min-w-[400px] lg:min-w-[492px] hover:bg-[rgba(19,22,184,0.05)] transition-colors">
+            <button className="bg-white border-2 border-[#1316b8] text-[#1316b8] font-lato font-bold text-base sm:text-lg md:text-xl lg:text-[20px] leading-[35px] rounded-[11px] px-6 md:px-10 lg:px-12 py-4 md:py-6 lg:py-8 min-h-[80px] w-full sm:w-auto min-w-[250px] md:min-w-[320px] lg:min-w-[380px] hover:bg-[rgba(19,22,184,0.05)] transition-colors">
               Get in Touch
             </button>
           </div>

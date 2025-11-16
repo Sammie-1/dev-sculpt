@@ -39,8 +39,7 @@ const Services = () => {
   ];
 
   return (
-    <section
-      id="services"
+    <section 
       ref={servicesSection.ref}
       className={`w-full bg-white py-12 md:py-16 lg:py-20 px-4 md:px-6 lg:px-8 scroll-animate ${servicesSection.isVisible ? 'visible' : ''}`}
     >
