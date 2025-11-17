@@ -3,7 +3,7 @@
 import { useScrollAnimation } from '@/hooks/useScrollAnimation';
 import Image from 'next/image';
 
-const COMM_IMAGE = 'http://localhost:3845/assets/8de6d3f7761f14eb9cad6450ed5c5d15def10e26.png';
+const COMM_IMAGE = '/assets/process-communication.png';
 
 const highlights = [
   {

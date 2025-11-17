@@ -3,10 +3,10 @@
 import { useScrollAnimation } from '@/hooks/useScrollAnimation';
 
 const ICONS = {
-  agile: 'http://localhost:3845/assets/c3e7c365d2d4f3bf6f8444ae5229953d50c47b31.svg',
-  devops: 'http://localhost:3845/assets/f3408a29363be101b7e4253e98cdbdfbaf7fad49.svg',
-  ux: 'http://localhost:3845/assets/62e22d5e61687c76c604b8cdbe39020e581763e2.svg',
-  qa: 'http://localhost:3845/assets/085d9d47328f8e09f1c78ccb54157f282d6f964c.svg',
+  agile: '/icons/process-agile.svg',
+  devops: '/icons/process-devops.svg',
+  ux: '/icons/process-ux.svg',
+  qa: '/icons/process-qa.svg',
 };
 
 const methodologyItems = [
