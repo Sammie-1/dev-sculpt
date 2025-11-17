@@ -60,4 +60,3 @@ const ProcessQuality = () => {
 export default ProcessQuality;
 
 
-

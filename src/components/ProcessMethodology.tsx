@@ -80,7 +80,7 @@ const ProcessMethodology = () => {
                 <h3 className="font-lato font-bold text-lg sm:text-xl md:text-2xl leading-tight text-black m-0">
                   {item.title}
                 </h3>
-                <p className="font-lato	font-medium text-sm sm:text-base md:text-lg leading-[28px] text-black/80 m-0">
+                <p className="font-lato font-medium text-sm sm:text-base md:text-lg leading-[28px] text-black/80 m-0">
                   {item.description}
                 </p>
               </div>
@@ -93,6 +93,5 @@ const ProcessMethodology = () => {
 };
 
 export default ProcessMethodology;
-
 
 
