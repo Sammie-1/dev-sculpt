@@ -1,8 +1,10 @@
 'use client';
 
+import Image from 'next/image';
 import { useState } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import devSculptLogo from '../../public/assets/dev-sculpt.svg';
 
 interface HeaderProps {
   hideGetStarted?: boolean;
@@ -23,13 +25,16 @@ const Header = ({ hideGetStarted = false }: HeaderProps) => {
   return (
     <header className="w-full bg-white border-b-[0.2px] border-[#130f78] rounded-tl-[11px] rounded-tr-[11px] sticky top-0 z-[1000]">
       <div className="max-w-[1728px] mx-auto px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16 py-2 sm:py-2.5 lg:py-3 flex items-center justify-between gap-4 sm:gap-6 md:gap-8 lg:gap-12">
-        <div className="flex-shrink-0">
-          <Link href="/">
-            <div className="w-10 h-10 md:w-12 md:h-12 bg-[#130f78] rounded-[4px] flex items-center justify-center cursor-pointer transition-transform duration-200 hover:scale-105">
-              <span className="text-white text-lg md:text-xl font-bold font-lato tracking-tight">DS</span>
-            </div>
-          </Link>
-        </div>
+        <Link href="/" className="flex-shrink-0">
+          <Image
+            src={devSculptLogo}
+            alt="Dev Sculpt"
+            width={48}
+            height={48}
+            className="w-12 h-12 object-contain transition-transform duration-200 hover:scale-105"
+            priority
+          />
+        </Link>
 
         <nav className="hidden sm:flex items-center gap-4 sm:gap-6 md:gap-8 lg:gap-10 xl:gap-12 flex-1 justify-center">
           {navLinks.map((link) => {

@@ -1,5 +1,6 @@
 import Image from 'next/image';
 import Link from 'next/link';
+import devSculptLogo from '../../public/assets/dev-sculpt.svg';
 
 const Footer = () => {
   const services = [
@@ -26,8 +27,8 @@ const Footer = () => {
       <div className="max-w-[1728px] mx-auto flex flex-col gap-8 md:gap-12 lg:gap-16">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-12">
           <div className="flex flex-col gap-6">
-            <Link href="/" className="inline-flex w-10 h-10 md:w-12 md:h-12 bg-[#130f78] rounded-[4px] items-center justify-center cursor-pointer transition-transform duration-200 hover:scale-105">
-              <span className="text-white text-lg md:text-xl font-bold font-lato tracking-tight">DS</span>
+            <Link href="/" className="inline-flex w-12 h-12 items-center justify-center cursor-pointer transition-transform duration-200 hover:scale-105">
+              <Image src={devSculptLogo} alt="Dev Sculpt" width={48} height={48} className="w-12 h-12 object-contain" />
             </Link>
 
             <p className="font-lato font-bold text-base md:text-lg lg:text-[18px] leading-[1.67] text-white m-0">
