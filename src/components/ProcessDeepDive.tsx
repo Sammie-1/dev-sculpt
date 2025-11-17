@@ -77,7 +77,7 @@ const ProcessDeepDive = () => {
               return (
                 <div key={index} className="flex flex-col gap-3 sm:gap-4 md:gap-6">
                   <div className="flex flex-col lg:flex-row gap-3 sm:gap-4 md:gap-6 items-start">
-                    <div className="w-full lg:w-[38%] order-1 lg:order-1">
+                    <div className="w-full lg:w-[38%] order-2 lg:order-1">
                       <div className="relative w-full aspect-[4/3] rounded-[6px] overflow-hidden max-h-[280px] sm:max-h-[320px] md:max-h-[360px]">
                         <Image 
                           src={phase.image} 
@@ -88,7 +88,7 @@ const ProcessDeepDive = () => {
                         />
                       </div>
                     </div>
-                    <div className="flex-1 order-2 lg:order-2">
+                    <div className="flex-1 order-1 lg:order-2">
                       {isPlanning ? (
                         <div className="flex flex-col gap-3 sm:gap-4 md:gap-5">
                           {/* Planning and Design heading at the beginning of text */}
